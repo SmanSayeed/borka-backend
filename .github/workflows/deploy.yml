@@ -1,4 +1,4 @@
-name: Deploy Borka React Inertia Laravel API APP
+name: 🚀 Deploy Borka React Inertia Laravel API APP
 
 on:
   push:
@@ -15,74 +15,71 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Deploy via SSH (git pull & build)
-        id: deploy
+      - name: Deploy via SSH (force sync + build + migrate)
         uses: appleboy/ssh-action@v1.2.2
-        continue-on-error: true
         with:
           host: "81.17.102.39"
-          username: 'root'
+          username: "root"
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
-            echo "Starting deployment..."
-            echo "Moving to project directory-> /var/www/borka.metroboys.com"
-            cd "/var/www/borka.metroboys.com"
+            echo "🚀 Starting deployment..."
+            cd /var/www/borka.metroboys.com
+
+            echo "✅ Marking safe directory..."
             git config --global --add safe.directory /var/www/borka.metroboys.com
-            echo "Cleaning up any local changes or untracked files..."
+
+            echo "🧹 Cleaning working directory..."
             git reset --hard
             git clean -fd
 
-            echo "Fetching latest changes from main branch..."
+            echo "⬇️ Fetching latest code..."
             git fetch origin main
 
-            echo "Resetting to origin/main (force sync with remote)..."
+            echo "🔄 Resetting to origin/main..."
             git reset --hard origin/main
 
-            echo "Code updated successfully from GitHub!"
-
+            echo "📦 Checking dependencies..."
             if git diff --name-only HEAD@{1} HEAD | grep -qE 'pnpm(-lock)?\.json'; then
-              echo "package.json or pnpm-lock.json has changed. Running pnpm install..."
-              pnpm install || {echo "pnpm install failed"; exit 1;}
+              echo "pnpm files changed — installing dependencies..."
+              pnpm install --frozen-lockfile || { echo "pnpm install failed"; exit 1; }
             else
-              echo "package.json unchanged. skipping pnpm install..."
+              echo "No pnpm changes detected — skipping install."
             fi
 
-            echo "Running pnpm build to build assets..."
-            pnpm build || {echo "pnpm build failed"; exit 1;}
+            echo "⚙️ Building frontend assets..."
+            pnpm build || { echo "pnpm build failed"; exit 1; }
 
             if git diff --name-only HEAD@{1} HEAD | grep -qE 'composer\.(json|lock)'; then
-              echo "composer.json or composer.lock changed. Running composer install..."
-              composer install || { echo "composer install failed"; exit 1; }
+              echo "composer.json/lock changed — running composer install..."
+              composer install --no-dev --optimize-autoloader || { echo "composer install failed"; exit 1; }
             else
-              echo "composer.json and composer.lock unchanged. Skipping composer install."
+              echo "No composer changes — skipping composer install."
             fi
 
             if git diff --name-only HEAD@{1} HEAD | grep -q '^database/migrations/'; then
-              echo "Migration files changed. Running php artisan migrate..."
-              php artisan migrate || { echo "migration failed"; exit 1; }
+              echo "🧱 Migrations changed — running migrations..."
+              php artisan migrate --force || { echo "Migration failed"; exit 1; }
             else
-              echo "No migration changes detected. Skipping php artisan migrate."
+              echo "No migration changes detected — skipping migrations."
             fi
 
-            echo "Clearing Laravel caches..."
-            php artisan config:clear || { echo "config:clear failed"; exit 1; }
-            php artisan route:clear || { echo "route:clear failed"; exit 1; }
-            php artisan cache:clear || { echo "cache:clear failed"; exit 1; }
-            php artisan view:clear || { echo "view:clear failed"; exit 1; }
+            echo "🧽 Clearing Laravel caches..."
+            php artisan optimize:clear || true
+            php artisan config:cache || true
+            php artisan route:cache || true
+            php artisan view:cache || true
 
-            echo "Deployment completed successfully!"
-            
+            echo "✅ Deployment completed successfully!"
+
       - name: Get commit details
         id: commit
         run: |
           echo "commit_hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
           echo "commit_author=$(git log -1 --pretty=%an)" >> $GITHUB_OUTPUT
           echo "commit_url=https://github.com/$GITHUB_REPOSITORY/commit/$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-
-          # Multiline-safe output for commit_message with proper escaping
           {
             echo 'commit_message<<EOF'
-            git log -1 --pretty=%B | jq -Rs .
+            git log -1 --pretty=%B
             echo EOF
           } >> $GITHUB_OUTPUT
