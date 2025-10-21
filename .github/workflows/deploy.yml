@@ -28,6 +28,7 @@ jobs:
             echo "Starting deployment..."
             echo "Moving to project directory-> /var/www/borka.metroboys.com"
             cd "/var/www/borka.metroboys.com"
+            git config --global --add safe.directory /var/www/borka.metroboys.com
             git stash
             git clean -f
             echo "Pulling latest changes from main branch..."
