@@ -29,10 +29,17 @@ jobs:
             echo "Moving to project directory-> /var/www/borka.metroboys.com"
             cd "/var/www/borka.metroboys.com"
             git config --global --add safe.directory /var/www/borka.metroboys.com
-            git stash
-            git clean -f
-            echo "Pulling latest changes from main branch..."
-            git pull origin main
+            echo "Cleaning up any local changes or untracked files..."
+            git reset --hard
+            git clean -fd
+
+            echo "Fetching latest changes from main branch..."
+            git fetch origin main
+
+            echo "Resetting to origin/main (force sync with remote)..."
+            git reset --hard origin/main
+
+            echo "Code updated successfully from GitHub!"
 
             if git diff --name-only HEAD@{1} HEAD | grep -qE 'pnpm(-lock)?\.json'; then
               echo "package.json or pnpm-lock.json has changed. Running pnpm install..."
