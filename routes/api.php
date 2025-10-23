@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BusinessCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,8 @@ Route::get('/', function () {
     ], 200);
 });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// ** Business Categories Routes **
+
+Route::group(['as' => 'business-categories.'], function () {
+    Route::get('/get-all-business-categories', [BusinessCategoryController::class, 'getAllBusinessCategories'])->name('get-all-business-categories');
+});
