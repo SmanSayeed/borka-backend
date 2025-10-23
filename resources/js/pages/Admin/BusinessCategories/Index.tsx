@@ -1,6 +1,6 @@
 import { BusinessCategoriesListTable } from '@/components/specific/business-categories/list-table';
 import AppLayout from '@/layouts/app-layout';
-import { index } from '@/routes/admin/business-categories';
+import businessCategories from '@/routes/admin/business-categories';
 import { BreadcrumbItem } from '@/types';
 import { IBusinessCategoryListResponse } from '@/types/business-categories';
 import { Head } from '@inertiajs/react';
@@ -12,7 +12,7 @@ interface BusinessCategoriesIndexProps {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Business Categories',
-        href: index().url,
+        href: businessCategories.index().url,
     },
 ];
 export default function BusinessCategoriesIndex({
@@ -21,7 +21,7 @@ export default function BusinessCategoriesIndex({
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Business Categories" />
-            <main className='px-3'>
+            <main className="px-3">
                 <p>TODO: Filter Option</p>
                 <BusinessCategoriesListTable data={data} />
                 <p>TODO: Create Modal</p>
