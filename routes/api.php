@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\API\BusinessCategoryController;
 use App\Http\Controllers\API\CategoryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// ** Test Route **
 Route::get('/', function () {
     return response()->json([
         'name' => 'Borka API Collection',
