@@ -30,6 +30,8 @@ jobs:
             git config --global --add safe.directory /var/www/borka.metroboys.com
 
             echo "🧹 Cleaning working directory..."
+            git stash
+            git clean -f
             git pull origin main
 
             echo "📦 Checking dependencies..."
