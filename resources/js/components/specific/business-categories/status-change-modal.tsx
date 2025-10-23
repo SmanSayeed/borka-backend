@@ -4,7 +4,6 @@ import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/utils';
-import admin from '@/routes/admin';
 import { IBusinessCategory } from '@/types/business-categories';
 import { router } from '@inertiajs/react';
 import { useState } from 'react';
@@ -21,7 +20,7 @@ export const StatusChangeModal = ({
     const [loading, setLoading] = useState(false);
     const onStatusChange = () => {
         router.post(
-            admin.businessCategories.toggleStatus.url(data.id),
+            `/admin/business-categories/toggle-status/${data.id}`,
             {},
             {
                 onStart: () => {
