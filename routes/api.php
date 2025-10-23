@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\BusinessCategoryController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\CategoryController;
 use Illuminate\Support\Facades\Route;
 
+// ** Test Route **
 Route::get('/', function () {
     return response()->json([
         'name' => 'Borka API Collection',
@@ -17,4 +18,10 @@ Route::get('/', function () {
 
 Route::group(['as' => 'business-categories.'], function () {
     Route::get('/get-all-business-categories', [BusinessCategoryController::class, 'getAllBusinessCategories'])->name('get-all-business-categories');
+});
+
+// ** Categories Routes **
+
+Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+    Route::get('/', [CategoryController::class, 'getCategories'])->name('get-categories');
 });
