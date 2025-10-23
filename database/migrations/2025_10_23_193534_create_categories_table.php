@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('business_category_id')->references('id')->on('business_categories')->onDelete('cascade');
             $table->string('slug')->nullable();
             $table->string('icon')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('video_thumbnail')->nullable();
             $table->integer('order')->default(0)->comment("Data Order of the category");
             $table->boolean('is_active')->default(true)->comment("Active status of the category, 0 = false, 1 = true");
             $table->softDeletes();
