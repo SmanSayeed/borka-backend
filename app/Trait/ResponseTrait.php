@@ -7,11 +7,11 @@ trait ResponseTrait
     protected function response($data, $message, $error, $validation_error, $success, $status)
     {
         return response()->json([
-            'data' => $data,
+            'success' => $success,
             'message' => $message,
+            'data' => $data,
             'error' => $error,
             'validation_error' => $validation_error,
-            'success' => $success,
         ], $status);
     }
 
