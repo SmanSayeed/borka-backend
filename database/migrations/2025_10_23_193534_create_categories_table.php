@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->integer('order')->default(0)->comment("Data Order of the category");
             $table->boolean('is_active')->default(true)->comment("Active status of the category, 0 = false, 1 = true");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
