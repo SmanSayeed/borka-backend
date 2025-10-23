@@ -1,4 +1,4 @@
-export interface BusinessCategory {
+export interface IBusinessCategory {
     id: number;
     name: string;
     slug: string;
@@ -9,3 +9,7 @@ export interface BusinessCategory {
     created_at: string;
     updated_at: string;
 }
+
+export interface IBusinessCategoryListResponse
+    extends IPagination,
+        Array<BusinessCategory> {}

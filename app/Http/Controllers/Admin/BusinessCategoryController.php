@@ -15,9 +15,21 @@ class BusinessCategoryController extends Controller
     public function index()
     {
         try {
-            $businessCategories = BusinessCategory::orderBy('order', 'asc')->get();
+            $perPage = request()->get('per_page', 10);
+            $search = request()->get('search', '');
+            $businessCategories = BusinessCategory::orderBy('order', 'asc')
+                ->when($search, function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })
+                ->paginate($perPage)->withQueryString()->toArray();
+            // Filter Data
+            $filterData = [
+                'search' => $search,
+                'per_page' => $perPage,
+            ];
             return Inertia::render('Admin/BusinessCategories/Index', [
                 'data' => $businessCategories,
+                'filterData' => $filterData,
             ]);
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());

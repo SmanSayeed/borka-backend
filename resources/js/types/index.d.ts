@@ -50,16 +50,16 @@ export interface IPaginationLink {
 
 export interface IPagination {
     current_page: number;
+    first_page_url: string;
     from: number | null;
     last_page: number;
+    last_page_url: string;
     path: string;
     per_page: number;
     to: number | null;
     total: number;
+    next_page_url: string | null;
+    prev_page_url: string | null;
     links: IPaginationLink[];
 }
 
-export interface IPaginationResponse<T> {
-    data: T[];
-    links: IPagination;
-}
