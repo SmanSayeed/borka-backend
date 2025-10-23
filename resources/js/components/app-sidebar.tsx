@@ -15,7 +15,6 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
 import AppLogo from './app-logo';
-import { index } from '@/routes/admin/business-categories';
 
 const mainNavItems: NavItem[] = [
     {
@@ -25,7 +24,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Business Categories',
-        href: index().url,
+        href: '/admin/business-categories',
         icon: Folder,
     }
 ];
