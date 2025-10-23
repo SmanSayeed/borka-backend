@@ -10,4 +10,9 @@ class BusinessCategory extends Model
     protected $cast = [
         'is_active' => 'boolean'
     ];
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }
