@@ -39,9 +39,15 @@ class BusinessCategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function toggleStatus(BusinessCategory $businessCategory)
     {
-        //
+        try {
+            $businessCategory->is_active = !$businessCategory->is_active;
+            $businessCategory->save();
+            return redirect()->back()->with('success', 'Business category status updated successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**
