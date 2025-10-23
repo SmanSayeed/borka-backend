@@ -30,14 +30,7 @@ jobs:
             git config --global --add safe.directory /var/www/borka.metroboys.com
 
             echo "🧹 Cleaning working directory..."
-            git reset --hard
-            git clean -fd
-
-            echo "⬇️ Fetching latest code..."
-            git fetch origin main
-
-            echo "🔄 Resetting to origin/main..."
-            git reset --hard origin/main
+            git pull origin main
 
             echo "📦 Checking dependencies..."
             export NVM_DIR="$HOME/.nvm"
