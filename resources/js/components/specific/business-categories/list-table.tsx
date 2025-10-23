@@ -85,6 +85,9 @@ export const BusinessCategoriesListTable = ({
                                     type="button"
                                     variant={'outline'}
                                     size={'icon'}
+                                    onClick={() => {
+                                        setStatusData(row.original);
+                                    }}
                                 >
                                     <PenIcon />
                                 </Button>
