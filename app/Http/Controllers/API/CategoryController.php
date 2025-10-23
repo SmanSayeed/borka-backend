@@ -28,6 +28,12 @@ class CategoryController extends Controller
                 ->when($request->has('parent_id'), function ($query) use ($request) {
                     $query->where('parent_id', $request->parent_id)->orderBy('id', 'desc');
                 })
+                // Search filter
+                ->when($request->has('search'), function ($query) use ($request) {
+                    // Name and Slug
+                    $query->where('name', 'like', '%' . $request->search . '%')
+                        ->orWhere('slug', 'like', '%' . $request->search . '%');
+                })
                 ->select('id', 'name', 'slug', 'business_category_id', 'parent_id')
                 ->get();
 
