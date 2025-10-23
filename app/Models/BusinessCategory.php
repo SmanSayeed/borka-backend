@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BusinessCategory extends Model
 {
-    //
+    protected $guarded = [];
+    protected $cast = [
+        'is_active' => 'boolean'
+    ];
 }
