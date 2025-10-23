@@ -10,6 +10,6 @@ export interface IBusinessCategory {
     updated_at: string;
 }
 
-export interface IBusinessCategoryListResponse
-    extends IPagination,
-        Array<BusinessCategory> {}
+export interface IBusinessCategoryListResponse extends IPagination {
+    data: IBusinessCategory[];
+}

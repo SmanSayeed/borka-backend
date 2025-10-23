@@ -1,11 +1,12 @@
+import { BusinessCategoriesListTable } from '@/components/specific/business-categories/list-table';
 import AppLayout from '@/layouts/app-layout';
 import { index } from '@/routes/admin/business-categories';
 import { BreadcrumbItem } from '@/types';
-import { BusinessCategory } from '@/types/business-categories';
+import { IBusinessCategoryListResponse } from '@/types/business-categories';
 import { Head } from '@inertiajs/react';
 
 interface BusinessCategoriesIndexProps {
-    data: BusinessCategory[];
+    data: IBusinessCategoryListResponse;
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -20,11 +21,12 @@ export default function BusinessCategoriesIndex({
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Business Categories" />
-            <p>TODO: Filter Option</p>
-            <p>TODO: Table</p>
-            {data && data?.length}
-            <p>TODO: Create Modal</p>
-            <p>TODO: Edit Modal</p>
+            <main className='px-3'>
+                <p>TODO: Filter Option</p>
+                <BusinessCategoriesListTable data={data} />
+                <p>TODO: Create Modal</p>
+                <p>TODO: Edit Modal</p>
+            </main>
         </AppLayout>
     );
 }
