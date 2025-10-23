@@ -42,3 +42,24 @@ export interface User {
     [key: string]: unknown; // This allows for additional properties...
 }
 
+export interface IPaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
+export interface IPagination {
+    current_page: number;
+    from: number | null;
+    last_page: number;
+    path: string;
+    per_page: number;
+    to: number | null;
+    total: number;
+    links: IPaginationLink[];
+}
+
+export interface IPaginationResponse<T> {
+    data: T[];
+    links: IPagination;
+}
