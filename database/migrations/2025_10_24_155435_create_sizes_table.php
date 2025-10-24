@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->unique();
-            $table->string('in_value')->comment("Leangth in inches");
-            $table->string('cm_value')->comment("Leangth in centimeters");
+            $table->decimal('in_value')->comment("Leangth in inches");
+            $table->decimal('cm_value')->comment("Leangth in centimeters");
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
