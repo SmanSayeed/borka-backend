@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('custom_size_prices', function (Blueprint $table) {
+            // Will be update after produc creation
             $table->id();
             $table->decimal("in_value");
             $table->decimal("cm_value");
