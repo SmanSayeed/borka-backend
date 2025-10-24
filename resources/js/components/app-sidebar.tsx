@@ -13,7 +13,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Ruler } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -26,7 +26,12 @@ const mainNavItems: NavItem[] = [
         title: 'Business Categories',
         href: '/admin/business-categories',
         icon: Folder,
-    }
+    },
+    {
+        title: 'Product Sizes',
+        href: '/admin/sizes',
+        icon: Ruler,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
