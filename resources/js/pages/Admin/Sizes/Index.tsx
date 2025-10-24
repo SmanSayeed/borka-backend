@@ -1,4 +1,4 @@
-import { BusinessCategoriesListTable } from '@/components/specific/business-categories/list-table';
+import { SizesListTable } from '@/components/specific/sizes/list-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { ISize } from '@/types/sizes';
@@ -15,7 +15,7 @@ export default function Index({ data }: { data: ISize[] }) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Product Sizes" />
             <main className="mt-4 px-3">
-                <BusinessCategoriesListTable data={data} />
+                <SizesListTable data={data} />
             </main>
         </AppLayout>
     );
