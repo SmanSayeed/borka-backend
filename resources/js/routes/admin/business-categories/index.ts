@@ -134,7 +134,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Admin\BusinessCategoryController::update
- * @see app/Http/Controllers/Admin/BusinessCategoryController.php:80
+ * @see app/Http/Controllers/Admin/BusinessCategoryController.php:89
  * @route '/admin/business-categories/update/{businessCategory}'
  */
 export const update = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -149,7 +149,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\BusinessCategoryController::update
- * @see app/Http/Controllers/Admin/BusinessCategoryController.php:80
+ * @see app/Http/Controllers/Admin/BusinessCategoryController.php:89
  * @route '/admin/business-categories/update/{businessCategory}'
  */
 update.url = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -177,7 +177,7 @@ update.url = (args: { businessCategory: string | number } | [businessCategory: s
 
 /**
 * @see \App\Http\Controllers\Admin\BusinessCategoryController::update
- * @see app/Http/Controllers/Admin/BusinessCategoryController.php:80
+ * @see app/Http/Controllers/Admin/BusinessCategoryController.php:89
  * @route '/admin/business-categories/update/{businessCategory}'
  */
 update.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -187,7 +187,7 @@ update.post = (args: { businessCategory: string | number } | [businessCategory: 
 
     /**
 * @see \App\Http\Controllers\Admin\BusinessCategoryController::update
- * @see app/Http/Controllers/Admin/BusinessCategoryController.php:80
+ * @see app/Http/Controllers/Admin/BusinessCategoryController.php:89
  * @route '/admin/business-categories/update/{businessCategory}'
  */
     const updateForm = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -197,7 +197,7 @@ update.post = (args: { businessCategory: string | number } | [businessCategory: 
 
             /**
 * @see \App\Http\Controllers\Admin\BusinessCategoryController::update
- * @see app/Http/Controllers/Admin/BusinessCategoryController.php:80
+ * @see app/Http/Controllers/Admin/BusinessCategoryController.php:89
  * @route '/admin/business-categories/update/{businessCategory}'
  */
         updateForm.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

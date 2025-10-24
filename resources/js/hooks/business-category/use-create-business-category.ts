@@ -6,7 +6,7 @@ const formSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
     slug: z.string().min(1, { message: 'Slug is required' }),
     description: z.string().optional(),
-    order: z.number().optional(),
+    order: z.string().optional(),
 });
 export type CreateBusinessCategoryFormSchema = z.infer<typeof formSchema>;
 export const useCreateBusinessCategory = () => {
@@ -16,15 +16,11 @@ export const useCreateBusinessCategory = () => {
             name: '',
             slug: '',
             description: '',
-            order: 0,
+            order: "0",
         },
     });
 
-    const onSubmit = (data: CreateBusinessCategoryFormSchema) => {
-        console.log(data);
-    };
     return {
         form,
-        onSubmit,
     };
 };

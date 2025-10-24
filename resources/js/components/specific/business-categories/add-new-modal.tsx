@@ -1,7 +1,12 @@
 import { Modal } from '@/components/shared/modal';
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { useCreateBusinessCategory } from '@/hooks/business-category/use-create-business-category';
+import {
+    CreateBusinessCategoryFormSchema,
+    useCreateBusinessCategory,
+} from '@/hooks/business-category/use-create-business-category';
+import { router } from '@inertiajs/react';
+import { useState } from 'react';
 import { BusinessCategoryForm } from './form';
 
 export const AddNewModal = ({
@@ -11,7 +16,31 @@ export const AddNewModal = ({
     isOpen: boolean;
     onClose: () => void;
 }) => {
-    const { form, onSubmit } = useCreateBusinessCategory();
+    const { form } = useCreateBusinessCategory();
+    const [loading, setLoading] = useState(false);
+    const onSubmit = (data: CreateBusinessCategoryFormSchema) => {
+        router.post(`/admin/business-categories/store`, data, {
+            onStart: () => {
+                setLoading(true);
+            },
+            onSuccess: () => {
+                form.reset();
+                router.reload({ only: ['admin.business-categories.index'] });
+                onClose();
+            },
+            onError: (errorBag) => {
+                Object.entries(errorBag).forEach(([key, message]) => {
+                    form.setError(
+                        key as keyof CreateBusinessCategoryFormSchema,
+                        { message: message as string },
+                    );
+                });
+            },
+            onFinish: () => {
+                setLoading(false);
+            },
+        });
+    };
     return (
         <Modal isOpen={isOpen} onClose={onClose} container="w-3xl">
             <DialogHeader>
@@ -20,7 +49,7 @@ export const AddNewModal = ({
                 </DialogTitle>
             </DialogHeader>
             <Separator />
-            <BusinessCategoryForm form={form} onSubmit={onSubmit} />
+            <BusinessCategoryForm form={form} onSubmit={onSubmit} loading={loading} />
         </Modal>
     );
 };

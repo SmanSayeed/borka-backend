@@ -55,7 +55,16 @@ class BusinessCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:business_categories,name',
+            'slug' => 'required|string|max:255|unique:business_categories,slug',
+            'description' => 'nullable|string|max:255',
+            'order' => 'nullable|integer',
+        ]);
+
+        BusinessCategory::create($data);
+
+        return redirect()->back()->with('success', 'Business category created successfully');
     }
 
     /**

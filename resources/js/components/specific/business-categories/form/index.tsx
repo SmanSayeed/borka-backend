@@ -6,16 +6,19 @@ import {
     FieldLabel,
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 import { Textarea } from '@/components/ui/textarea';
 import { CreateBusinessCategoryFormSchema } from '@/hooks/business-category/use-create-business-category';
 import { Controller, UseFormReturn } from 'react-hook-form';
 interface BusinessCategoryFormProps {
     form: UseFormReturn<CreateBusinessCategoryFormSchema>;
     onSubmit: (data: CreateBusinessCategoryFormSchema) => void;
+    loading: boolean;
 }
 export const BusinessCategoryForm = ({
     form,
     onSubmit,
+    loading,
 }: BusinessCategoryFormProps) => {
     return (
         <form
@@ -121,7 +124,9 @@ export const BusinessCategoryForm = ({
                 />
             </FieldGroup>
             <div className="flex justify-end gap-2">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" disabled={loading}>
+                    {loading ? <><Spinner /> Submitting...</> : 'Submit'}
+                </Button>
             </div>
         </form>
     );

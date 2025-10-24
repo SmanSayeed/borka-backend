@@ -20,11 +20,8 @@ export default function BusinessCategoriesIndex({
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Business Categories" />
-            <main className="px-3">
-                <p>TODO: Filter Option</p>
+            <main className="px-3 mt-4">
                 <BusinessCategoriesListTable data={data} />
-                <p>TODO: Create Modal</p>
-                <p>TODO: Edit Modal</p>
             </main>
         </AppLayout>
     );
