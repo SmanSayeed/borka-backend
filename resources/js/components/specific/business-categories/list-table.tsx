@@ -12,8 +12,9 @@ import {
     IBusinessCategoryListResponse,
 } from '@/types/business-categories';
 import { ColumnDef } from '@tanstack/react-table';
-import { PenIcon } from 'lucide-react';
+import { PenIcon, PlusIcon } from 'lucide-react';
 import { useState } from 'react';
+import { AddNewModal } from './add-new-modal';
 import { StatusChangeModal } from './status-change-modal';
 
 export const BusinessCategoriesListTable = ({
@@ -26,6 +27,8 @@ export const BusinessCategoriesListTable = ({
     const [statusData, setStatusData] = useState<IBusinessCategory | null>(
         null,
     );
+    // Add New Modal
+    const [isAddNewModalOpen, setAddNewModalOpen] = useState(false);
     // Column Definition
     const columns: ColumnDef<IBusinessCategory>[] = [
         {
@@ -89,7 +92,7 @@ export const BusinessCategoriesListTable = ({
                                         setStatusData(row.original);
                                     }}
                                 >
-                                    <PenIcon />
+                                    <PenIcon className="text-yellow-600" />
                                 </Button>
                             </TooltipTrigger>
                             <TooltipContent>
@@ -106,6 +109,14 @@ export const BusinessCategoriesListTable = ({
     ];
     return (
         <div>
+            <div className="flex justify-end">
+                <Button
+                    className="cursor-pointer"
+                    onClick={() => setAddNewModalOpen(true)}
+                >
+                    <PlusIcon /> Add New
+                </Button>
+            </div>
             <DataTable
                 columns={columns}
                 data={data?.data ?? []}
@@ -121,6 +132,10 @@ export const BusinessCategoriesListTable = ({
                     }}
                 />
             )}
+            <AddNewModal
+                isOpen={isAddNewModalOpen}
+                onClose={() => setAddNewModalOpen(false)}
+            />
         </div>
     );
 };
