@@ -13,11 +13,20 @@ class SizeController extends Controller
     {
         $sizes = Size::all();
         return Inertia::render('Admin/Sizes/Index', [
-            'sizes' => $sizes
+            'data' => $sizes
         ]);
     }
 
-    public function toggleStatus() {}
+    public function toggleStatus(Size $size)
+    {
+        try {
+            $size->is_active = !$size->is_active;
+            $size->save();
+            return redirect()->back()->with('success', 'Size status updated successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 
     public function store() {}
 

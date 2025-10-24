@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Admin\SizeController::store
- * @see app/Http/Controllers/Admin/SizeController.php:22
+ * @see app/Http/Controllers/Admin/SizeController.php:31
  * @route '/admin/sizes/store'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -94,7 +94,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::store
- * @see app/Http/Controllers/Admin/SizeController.php:22
+ * @see app/Http/Controllers/Admin/SizeController.php:31
  * @route '/admin/sizes/store'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::store
- * @see app/Http/Controllers/Admin/SizeController.php:22
+ * @see app/Http/Controllers/Admin/SizeController.php:31
  * @route '/admin/sizes/store'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -113,7 +113,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Admin\SizeController::store
- * @see app/Http/Controllers/Admin/SizeController.php:22
+ * @see app/Http/Controllers/Admin/SizeController.php:31
  * @route '/admin/sizes/store'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Admin\SizeController::store
- * @see app/Http/Controllers/Admin/SizeController.php:22
+ * @see app/Http/Controllers/Admin/SizeController.php:31
  * @route '/admin/sizes/store'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -134,73 +134,73 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Admin\SizeController::update
- * @see app/Http/Controllers/Admin/SizeController.php:24
- * @route '/admin/sizes/update/{businessCategory}'
+ * @see app/Http/Controllers/Admin/SizeController.php:33
+ * @route '/admin/sizes/update/{size}'
  */
-export const update = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const update = (args: { size: string | number } | [size: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: update.url(args, options),
     method: 'post',
 })
 
 update.definition = {
     methods: ["post"],
-    url: '/admin/sizes/update/{businessCategory}',
+    url: '/admin/sizes/update/{size}',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::update
- * @see app/Http/Controllers/Admin/SizeController.php:24
- * @route '/admin/sizes/update/{businessCategory}'
+ * @see app/Http/Controllers/Admin/SizeController.php:33
+ * @route '/admin/sizes/update/{size}'
  */
-update.url = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions) => {
+update.url = (args: { size: string | number } | [size: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
-        args = { businessCategory: args }
+        args = { size: args }
     }
 
     
     if (Array.isArray(args)) {
         args = {
-                    businessCategory: args[0],
+                    size: args[0],
                 }
     }
 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-                        businessCategory: args.businessCategory,
+                        size: args.size,
                 }
 
     return update.definition.url
-            .replace('{businessCategory}', parsedArgs.businessCategory.toString())
+            .replace('{size}', parsedArgs.size.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::update
- * @see app/Http/Controllers/Admin/SizeController.php:24
- * @route '/admin/sizes/update/{businessCategory}'
+ * @see app/Http/Controllers/Admin/SizeController.php:33
+ * @route '/admin/sizes/update/{size}'
  */
-update.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+update.post = (args: { size: string | number } | [size: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: update.url(args, options),
     method: 'post',
 })
 
     /**
 * @see \App\Http\Controllers\Admin\SizeController::update
- * @see app/Http/Controllers/Admin/SizeController.php:24
- * @route '/admin/sizes/update/{businessCategory}'
+ * @see app/Http/Controllers/Admin/SizeController.php:33
+ * @route '/admin/sizes/update/{size}'
  */
-    const updateForm = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { size: string | number } | [size: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, options),
         method: 'post',
     })
 
             /**
 * @see \App\Http\Controllers\Admin\SizeController::update
- * @see app/Http/Controllers/Admin/SizeController.php:24
- * @route '/admin/sizes/update/{businessCategory}'
+ * @see app/Http/Controllers/Admin/SizeController.php:33
+ * @route '/admin/sizes/update/{size}'
  */
-        updateForm.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.post = (args: { size: string | number } | [size: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, options),
             method: 'post',
         })
@@ -209,52 +209,57 @@ update.post = (args: { businessCategory: string | number } | [businessCategory: 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::toggleStatus
  * @see app/Http/Controllers/Admin/SizeController.php:20
- * @route '/admin/sizes/toggle-status/{businessCategory}'
+ * @route '/admin/sizes/toggle-status/{size}'
  */
-export const toggleStatus = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const toggleStatus = (args: { size: number | { id: number } } | [size: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: toggleStatus.url(args, options),
     method: 'post',
 })
 
 toggleStatus.definition = {
     methods: ["post"],
-    url: '/admin/sizes/toggle-status/{businessCategory}',
+    url: '/admin/sizes/toggle-status/{size}',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::toggleStatus
  * @see app/Http/Controllers/Admin/SizeController.php:20
- * @route '/admin/sizes/toggle-status/{businessCategory}'
+ * @route '/admin/sizes/toggle-status/{size}'
  */
-toggleStatus.url = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions) => {
+toggleStatus.url = (args: { size: number | { id: number } } | [size: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
-        args = { businessCategory: args }
+        args = { size: args }
     }
 
+            if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+            args = { size: args.id }
+        }
     
     if (Array.isArray(args)) {
         args = {
-                    businessCategory: args[0],
+                    size: args[0],
                 }
     }
 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-                        businessCategory: args.businessCategory,
+                        size: typeof args.size === 'object'
+                ? args.size.id
+                : args.size,
                 }
 
     return toggleStatus.definition.url
-            .replace('{businessCategory}', parsedArgs.businessCategory.toString())
+            .replace('{size}', parsedArgs.size.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\Admin\SizeController::toggleStatus
  * @see app/Http/Controllers/Admin/SizeController.php:20
- * @route '/admin/sizes/toggle-status/{businessCategory}'
+ * @route '/admin/sizes/toggle-status/{size}'
  */
-toggleStatus.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+toggleStatus.post = (args: { size: number | { id: number } } | [size: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: toggleStatus.url(args, options),
     method: 'post',
 })
@@ -262,9 +267,9 @@ toggleStatus.post = (args: { businessCategory: string | number } | [businessCate
     /**
 * @see \App\Http\Controllers\Admin\SizeController::toggleStatus
  * @see app/Http/Controllers/Admin/SizeController.php:20
- * @route '/admin/sizes/toggle-status/{businessCategory}'
+ * @route '/admin/sizes/toggle-status/{size}'
  */
-    const toggleStatusForm = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const toggleStatusForm = (args: { size: number | { id: number } } | [size: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: toggleStatus.url(args, options),
         method: 'post',
     })
@@ -272,9 +277,9 @@ toggleStatus.post = (args: { businessCategory: string | number } | [businessCate
             /**
 * @see \App\Http\Controllers\Admin\SizeController::toggleStatus
  * @see app/Http/Controllers/Admin/SizeController.php:20
- * @route '/admin/sizes/toggle-status/{businessCategory}'
+ * @route '/admin/sizes/toggle-status/{size}'
  */
-        toggleStatusForm.post = (args: { businessCategory: string | number } | [businessCategory: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        toggleStatusForm.post = (args: { size: number | { id: number } } | [size: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: toggleStatus.url(args, options),
             method: 'post',
         })

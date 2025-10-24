@@ -41,17 +41,17 @@ export const SizesListTable = ({ data }: { data: ISize[] }) => {
             },
         },
         {
-            header: 'Length',
-            accessorKey: 'length',
-            meta: {
-                className: 'text-right',
-            },
-        },
-        {
             header: 'Unit',
             accessorKey: 'unit_of_masurement',
             meta: {
                 className: 'w-[10%] text-center',
+            },
+        },
+        {
+            header: 'Length',
+            accessorKey: 'length',
+            meta: {
+                className: 'text-right',
             },
         },
         {
