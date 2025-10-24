@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::create('custom_size_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code')->unique();
-            $table->decimal('length');
-            $table->decimal('width');
-            $table->decimal('sleeve');
-            $table->enum('unit_of_masurement', ['in', 'cm'])->comment('Provided values unit. in = inches, cm = centimeters');
+            $table->decimal("in_value");
+            $table->decimal("cm_value");
+            $table->decimal("price")->comment("Extra amount to be added to the base price");
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sizes');
+        Schema::dropIfExists('custom_size_prices');
     }
 };

@@ -17,6 +17,6 @@ class Size extends Model
     public function getLabelAttribute()
     {
         // S-48in
-        return $this->code . "-" . $this->in_value . "in";
+        return $this->code . "-" . $this->length . $this->unit_of_masurement;
     }
 }
