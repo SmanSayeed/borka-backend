@@ -1,6 +1,7 @@
 import { BusinessCategoriesListTable } from '@/components/specific/business-categories/list-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
+import { ISize } from '@/types/sizes';
 import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -9,7 +10,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/admin/sizes',
     },
 ];
-export default function Index({ data }) {
+export default function Index({ data }: { data: ISize[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Product Sizes" />
