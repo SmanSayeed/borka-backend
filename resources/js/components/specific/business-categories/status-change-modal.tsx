@@ -34,7 +34,7 @@ export const StatusChangeModal = ({
         );
     };
     return (
-        <Modal isOpen={isOpen} onClose={onClose} container="500">
+        <Modal isOpen={isOpen} onClose={onClose} container="w-xl">
             <DialogHeader>
                 <DialogTitle className="text-center text-sm">
                     Change Business Category Status
