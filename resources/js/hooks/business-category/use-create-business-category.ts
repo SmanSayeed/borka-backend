@@ -8,8 +8,9 @@ const formSchema = z.object({
     description: z.string().optional(),
     order: z.number().optional(),
 });
+export type CreateBusinessCategoryFormSchema = z.infer<typeof formSchema>;
 export const useCreateBusinessCategory = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
+    const form = useForm<CreateBusinessCategoryFormSchema>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: '',
@@ -19,7 +20,7 @@ export const useCreateBusinessCategory = () => {
         },
     });
 
-    const onSubmit = (data: z.infer<typeof formSchema>) => {
+    const onSubmit = (data: CreateBusinessCategoryFormSchema) => {
         console.log(data);
     };
     return {

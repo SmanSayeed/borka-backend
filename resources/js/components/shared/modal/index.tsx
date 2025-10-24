@@ -66,8 +66,10 @@ export const Modal = ({
         return (
             <Dialog open={isOpen} onOpenChange={onClose} modal>
                 <DialogContent
-                    className={cn(!container && 'max-w-3xl lg:max-w-7xl')}
-                    style={container ? { maxWidth: container } : undefined}
+                    className={cn(
+                        'max-w-3xl lg:max-w-7xl',
+                        container && container,
+                    )}
                     onInteractOutside={(e) =>
                         outsideClick && e.preventDefault()
                     }
