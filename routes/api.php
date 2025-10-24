@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\BusinessCategoryController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SizeController;
 use Illuminate\Support\Facades\Route;
 
 // ** Test Route **
@@ -24,4 +25,10 @@ Route::group(['as' => 'business-categories.'], function () {
 
 Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
     Route::get('/', [CategoryController::class, 'getCategories'])->name('get-categories');
+});
+
+// ** Sizes Routes **
+
+Route::group(['as' => 'sizes.'], function () {
+    Route::get('/get-all-sizes', [SizeController::class, 'getAllSizes'])->name('get-all-sizes');
 });
